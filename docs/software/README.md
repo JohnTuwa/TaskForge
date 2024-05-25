@@ -230,7 +230,7 @@ class Users:
             if self.cursor.rowcount > 0:
                 return {"message": "User updated successfully", "status_code": 200}
             else:
-                return {"message": "User wasn`t updated", "error": "User not Found", "status_code": 404}
+                return {"message": "User wasn`t updated", "error": "Not Found", "status_code": 404}
         except psycopg.Error as error:
             self.connection.rollback()
             return {"message": "User update failed: " + str(error), "error": "Database Error", "status_code": 500}
@@ -245,7 +245,7 @@ class Users:
             if self.cursor.rowcount > 0:
                 return {"message": "User deleted successfully", "status_code": 200}
             else:
-                return {"message": "Nothing to delete", "error": "User not Found", "status_code": 404}
+                return {"message": "Nothing to delete", "error": "Not Found", "status_code": 404}
         except Exception as error:
             self.connection.rollback()
             return {"message": "Delete user failed", "error": str(error), "status_code": 500}
