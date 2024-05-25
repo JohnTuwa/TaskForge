@@ -138,7 +138,7 @@ def add_user():
 @app.route("/user/update", methods=["PATCH"])
 def update_user():
     data = request.get_json()
-    result = users.add_user(data)
+    result = users.update_user(data)
     return jsonify(result), 200
 
 @app.route("/user/delete/<id>", methods=["DELETE"])
@@ -245,7 +245,7 @@ class Users:
             if self.cursor.rowcount > 0:
                 return {"message": "User deleted successfully", "status_code": 200}
             else:
-                return {"message": "Nothing to delete", "error": "Not Found", "status_code": 404}
+                return {"message": "Nothing to delete", "error": "User not Found", "status_code": 404}
         except Exception as error:
             self.connection.rollback()
             return {"message": "Delete user failed", "error": str(error), "status_code": 500}
