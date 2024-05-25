@@ -25,7 +25,7 @@ def add_user():
 @app.route("/user/update", methods=["PATCH"])
 def update_user():
     data = request.get_json()
-    result = users.add_user(data)
+    result = users.update_user(data)
     return jsonify(result), 200
 
 @app.route("/user/delete/<id>", methods=["DELETE"])
